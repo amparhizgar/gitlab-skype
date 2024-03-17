@@ -59,6 +59,9 @@ window.addEventListener('load', function () {
     shortcutElements.forEach(element => {
         const shortcuts = element.getAttribute('aria-keyshortcuts');
         document.addEventListener('keydown', function(event) {
+            const isInputField = ['input', 'textarea'].includes(event.target.tagName.toLowerCase());
+            if (isInputField)
+                return;
             if (shortcuts && shortcuts.includes(event.key)) {
                 element.click();
             }
